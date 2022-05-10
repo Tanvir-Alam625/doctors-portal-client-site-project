@@ -2,31 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  const link = (
-    <>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
+  // const link = (
+  //   <>
 
-      <li>
-        <Link to="/about">About</Link>
-      </li>
-      <li>
-        <Link to="/appointment">Appointment</Link>
-      </li>
-      <li>
-        <Link to="/reviews">Reviews</Link>
-      </li>
-      <li>
-        <Link to="/contact">Contact Us</Link>
-      </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
-    </>
-  );
+  //   </>
+  // );
   return (
-    <div className="mx-[0px] lg:mx-[100px]">
+    <div className="mx-[0px] lg:mx-[100px] text-accent">
       <div className="navbar bg-base-100 ">
         <div className="navbar">
           <div className="dropdown">
@@ -48,15 +30,53 @@ const Header = () => {
             </label>
             <ul
               tabindex="0"
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu font-semibold menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              {link}
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/appointment">Appointment</Link>
+              </li>
+              <li>
+                <Link to="/reviews">Reviews</Link>
+              </li>
+              <li>
+                <Link to="/contact">Contact Us</Link>
+              </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">Doctors Portal</a>
+          <h2 className="btn btn-ghost normal-case text-xl">Doctors Portal</h2>
         </div>
         <div className="navbar-center hidden lg:flex justify-end">
-          <ul className="menu menu-horizontal p-0">{link}</ul>
+          <ul className="menu menu-horizontal p-0 font-semibold">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/appointment">Appointment</Link>
+            </li>
+            <li>
+              <Link to="/reviews">Reviews</Link>
+            </li>
+            <li>
+              <Link to="/contact">Contact Us</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
