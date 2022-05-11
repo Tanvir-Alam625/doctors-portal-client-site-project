@@ -46,12 +46,12 @@ const Services = () => {
         ))}
       </div>
       <div className="service-banner flex justify-center lg:px-20 px-0 my-12">
-        <div class="hero min-h-screen bg-base-100">
+        <div class="hero  bg-base-100">
           <div class="hero-content flex-col lg:flex-row">
             <img
               src={treatment}
               alt="treatment"
-              class="max-w-sm rounded-lg shadow-2xl lg:mr-12 mr-0"
+              class="lg:max-w-sm w-full rounded-lg shadow-2xl lg:mr-12 mr-0"
             />
             <div>
               <h1 class="text-5xl font-bold lg:text-[45px] text-[25px] text-accent">

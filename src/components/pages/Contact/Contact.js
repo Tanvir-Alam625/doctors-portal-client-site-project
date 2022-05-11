@@ -31,10 +31,7 @@ const Contact = () => {
           placeholder="Message"
         ></textarea>
         <br />
-        <button
-          class=" my-[15px] rounded-lg py-[15px] px-[35px] bg-primary text-base-100 text-xl text-center "
-          type="submit"
-        >
+        <button class=" my-[15px] rounded-lg py-[15px] px-[35px] bg-primary text-base-100 text-center  text-xl">
           Submit
         </button>
       </form>

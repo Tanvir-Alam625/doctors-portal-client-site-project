@@ -3,7 +3,7 @@ import React from "react";
 const Testimonial = ({ data }) => {
   const { name, img, description, location } = data;
   return (
-    <div class="card w-96 bg-base-100 shadow-xl">
+    <div class="card lg:max-w-lg bg-base-100 shadow-xl">
       <div class="card-body">
         <p>{description}</p>
         <div class="card-actions flex justify-start my-[36px] items-center">
