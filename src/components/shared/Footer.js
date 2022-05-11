@@ -3,13 +3,16 @@ import footer from "../../assets/images/footer.png";
 const Footer = () => {
   return (
     <footer
-      className="py-[70px] font-sans "
+      className="pt-[70px] font-sans "
       style={{
         backgroundImage: `url(${footer})`,
         backgroundSize: "100% 100% ",
       }}
     >
-      <div className="lg:px-12 px-2 max-w-7xl mx-auto">
+      <div
+        className="lg:px-12 px-2 max-w-7xl 
+      mx-auto"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ml-8 lg:ml-0 ">
           <div className="service">
             <h2 className="uppercase font-bold mb-[20px]  text-accent text-2xl ">
@@ -80,6 +83,11 @@ const Footer = () => {
               New York - 101010 Hudson
             </a>{" "}
           </div>
+        </div>
+        <div className="flex justify-center">
+          <small className="text-accent text-sm  font-semibold my-[50px]">
+            Copyright 2022 All Rights Reserved
+          </small>
         </div>
       </div>
     </footer>
