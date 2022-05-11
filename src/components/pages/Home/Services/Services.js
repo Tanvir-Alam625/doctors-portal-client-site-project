@@ -45,7 +45,7 @@ const Services = () => {
           <Service key={serviceItem.id} data={serviceItem} />
         ))}
       </div>
-      <div className="service-banner flex justify-center lg:px-20 my-12">
+      <div className="service-banner flex justify-center lg:px-20 px-0 my-12">
         <div class="hero min-h-screen bg-base-100">
           <div class="hero-content flex-col lg:flex-row">
             <img
@@ -54,7 +54,7 @@ const Services = () => {
               class="max-w-sm rounded-lg shadow-2xl lg:mr-12 mr-0"
             />
             <div>
-              <h1 class="text-5xl font-bold lg:text-[45px] text-[25px]">
+              <h1 class="text-5xl font-bold lg:text-[45px] text-[25px] text-accent">
                 Exceptional Dental Care, on Your Terms
               </h1>
               <p class="py-6">
