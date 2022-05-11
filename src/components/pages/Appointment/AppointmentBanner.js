@@ -22,6 +22,7 @@ const AppointmentBanner = () => {
           alt="banner-img"
         />
         <div className="banner-info lg:mr-12 mr-0 ">
+          {/* this is date picker  calender */}
           <DayPicker
             mode="single"
             selected={date}
