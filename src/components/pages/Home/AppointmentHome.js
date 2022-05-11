@@ -8,7 +8,10 @@ const AppointmentHome = () => {
       className="border-2 flex flex-col lg:flex-row  font-sans lg:px-32 px-2 lg:my-28 my-12"
       style={{ backgroundImage: `url(${appointment})` }}
     >
-      <div className="lg:w-[50%] w-full hidden lg:flex justify-center">
+      <div
+        className="lg:w-[50%] w-full hidden lg:flex justify-center max-w-7xl
+        mx-auto"
+      >
         <img
           src={doctorSmall}
           alt="doctorSmall"

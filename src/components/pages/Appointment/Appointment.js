@@ -1,10 +1,11 @@
 import React from "react";
+import Footer from "../../shared/Footer";
 
 const Appointment = () => {
   return (
-    <div>
-      <h2>Appointment</h2>
-    </div>
+    <section>
+      <Footer />
+    </section>
   );
 };
 
