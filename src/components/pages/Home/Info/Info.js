@@ -1,8 +1,8 @@
 import React from "react";
 import InfoCard from "./InfoCard";
-import Clock from "../../../assets/icons/clock.svg";
-import Phone from "../../../assets/icons/phone.svg";
-import Marker from "../../../assets/icons/marker.svg";
+import Clock from "../../../../assets/icons/clock.svg";
+import Phone from "../../../../assets/icons/phone.svg";
+import Marker from "../../../../assets/icons/marker.svg";
 
 const Info = () => {
   const infoData = [
@@ -30,7 +30,7 @@ const Info = () => {
   ];
 
   return (
-    <div className="lg:px-12 px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {infoData.map((data) => (
         <InfoCard key={data.id} data={data} />
       ))}

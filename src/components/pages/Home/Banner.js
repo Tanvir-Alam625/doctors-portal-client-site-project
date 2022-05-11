@@ -8,6 +8,7 @@ const Banner = () => {
         <img
           src={chair}
           className=" lg:w-[50%] w-full rounded-lg shadow-2xl  "
+          alt="banner-img"
         />
         <div className="banner-info lg:mr-12 mr-0 ">
           <h1 className="text-5xl font-bold text-accent ">

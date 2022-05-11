@@ -7,7 +7,7 @@ const InfoCard = ({ data }) => {
       <figure>
         <img src={img} alt="Album" />
       </figure>
-      <div class="card-body py-8   ">
+      <div class="card-body py-8 last:  ">
         <h2 class="card-title">{title}</h2>
         <p>{description}</p>
       </div>
