@@ -27,7 +27,7 @@ const Contact = () => {
         />{" "}
         <br />
         <textarea
-          class="textarea text-xl my-[20px] p-[14px]  w-full"
+          class="textarea text-xl my-[20px] p-[14px]  w-full h-[136px]"
           placeholder="Message"
         ></textarea>
         <br />
