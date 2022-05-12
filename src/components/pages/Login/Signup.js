@@ -43,7 +43,7 @@ const Signup = () => {
         </form>
         <p className="text- text-center mb-[16px]">
           Already SignUp?
-          <Link to="/signup" className="text-secondary ml-2">
+          <Link to="/login" className="text-secondary ml-2">
             Login
           </Link>
         </p>
