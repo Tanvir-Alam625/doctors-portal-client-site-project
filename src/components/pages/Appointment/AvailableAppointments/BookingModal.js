@@ -9,7 +9,6 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
     const email = event.target.email.value;
     const phone = event.target.phone.value;
     const date = event.target.date.value;
-    // console.log(_id, slot, name, date, email, phone);
     const bookedData = { name, email, date, phone, slot };
     fetch("http://localhost:5000/booked", {
       method: "POST",

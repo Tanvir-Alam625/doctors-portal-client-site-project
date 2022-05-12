@@ -7,6 +7,9 @@ import Contact from "./components/pages/Contact/Contact";
 import Appointment from "./components/pages/Appointment/Appointment";
 import Reviews from "./components/pages/Reviews/Reviews";
 import Login from "./components/pages/Login/Login";
+import Reset from "./components/pages/Login/Reset";
+import Signup from "./components/pages/Login/Signup";
+import NotFound from "./components/NotFound/NotFound";
 function App() {
   return (
     <div>
@@ -18,6 +21,10 @@ function App() {
         <Route path="/appointment" element={<Appointment />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/reset" element={<Reset />} />
+        {/* not found route  */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
