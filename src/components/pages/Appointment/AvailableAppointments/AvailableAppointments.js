@@ -7,11 +7,16 @@ import BookingModal from "./BookingModal";
 const AvailableAppointments = ({ date }) => {
   const [appointments, setAppointments] = useState([]);
   const [treatment, setTreatment] = useState(null);
+  const [spinner, setSpinner] = useState(false);
   useEffect(() => {
-    fetch("services.json")
+    setSpinner(true);
+    fetch("http://localhost:5000/service")
       .then((res) => res.json())
-      .then((data) => setAppointments(data));
-  }, []);
+      .then((data) => {
+        setAppointments(data);
+        setSpinner(false);
+      });
+  }, [date]);
   return (
     <section className="lg:px-12 px-2 max-w-7xl  mx-auto lg:mb-28 mb-12">
       <h5 className="text-xl lg:my-[100px] my-[50px] text-secondary font-semibold text-center">
