@@ -1,6 +1,6 @@
 import React from "react";
 
-const AvailableAppointment = ({ data }) => {
+const AvailableAppointment = ({ data, setTreatment }) => {
   const { name, _id, slots } = data;
   return (
     <div class="card lg:max-w-lg hover:border  shadow-lg text-neutral-content">
@@ -13,16 +13,21 @@ const AvailableAppointment = ({ data }) => {
           {slots.length > 0 ? (
             <span>{slots[0]}</span>
           ) : (
-            <span className="text-red-500">Try Another Day</span>
+            <span className="text-red-500">Try Another Day!</span>
           )}
         </p>
         <p className="text-sm mb-[15px] p-0 text-neutral">
           {slots.length} {slots.length < 1 ? "SPACE" : "SPACES"} AVAILABLE
         </p>
         <div class="card-actions justify-end">
-          <button class="btn btn-primary uppercase text-base-100 bg-gradient-to-r from-secondary to-primary">
+          <label
+            disabled={slots.length === 0}
+            for="booked"
+            onClick={() => setTreatment(data)}
+            class="btn btn-primary  modal-button uppercase text-base-100 bg-gradient-to-r from-secondary to-primary"
+          >
             book appointment
-          </button>
+          </label>
         </div>
       </div>
     </div>
