@@ -1,29 +1,61 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+// import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <div className="flex justify-center min-h-screen items-center">
-      <div class="shadow-lg rounded-lg w-full text-accent  mx-2 p-[30px] lg:w-96 ">
-        <h2 class="text-center text-[20px] mt-[15px]  mb-[30px]">Login</h2>
-        <form>
+      <div className="shadow-lg rounded-lg w-full text-accent  mx-2 p-[30px] lg:w-96 ">
+        <h2 className="text-center text-[20px] mt-[15px]  mb-[30px]">Login</h2>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="input-box mb-[10px]">
             <label htmlFor="email">Email</label>
             <input
               type="email"
-              name="email"
+              {...register("email", {
+                required: { value: true, message: "Email is required" },
+                pattern: {
+                  value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                  message: "Please Enter the valid Email",
+                },
+              })}
               id="email"
-              class="input input-bordered w-full"
+              className="input input-bordered w-full"
             />
+            <label htmlFor="email" className="text-red-400">
+              {(errors.email?.type === "required" && errors.email?.message) ||
+                (errors.email?.type === "pattern" && errors.email?.message)}
+            </label>
           </div>
           <div className="input-box">
             <label htmlFor="password">Password</label>
             <input
               type="password"
-              class="input input-bordered w-full"
-              name="password"
+              className="input input-bordered w-full"
+              {...register("password", {
+                required: { value: true, message: "Password is required" },
+                minLength: {
+                  value: 6,
+                  message: "Password length must be 6 character ",
+                },
+              })}
               id="password"
             />
+            <label htmlFor="password" className="text-red-400">
+              {(errors.password?.type === "required" &&
+                errors.password?.message) ||
+                (errors.password?.type === "minLength" &&
+                  errors.password?.message)}
+            </label>
           </div>
           <div className="reset mb-[20px]">
             <Link
@@ -46,7 +78,7 @@ const Login = () => {
             Create New Account
           </Link>
         </p>
-        <div class="divider mb-[25px]">OR</div>
+        <div className="divider mb-[25px]">OR</div>
         <button className="uppercase border w-full border-accent text-xl p-[15px] rounded-lg">
           continue with Google
         </button>

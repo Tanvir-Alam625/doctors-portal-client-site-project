@@ -5,7 +5,7 @@ const PrimaryBtn = ({ children }) => {
   return (
     <button
       onClick={() => navigate("/appointment")}
-      class="btn btn-primary text-base-100 uppercase font-sans font-bold bg-gradient-to-r from-secondary to-primary"
+      className="btn btn-primary text-base-100 uppercase font-sans font-bold bg-gradient-to-r from-secondary to-primary"
     >
       {children}
     </button>

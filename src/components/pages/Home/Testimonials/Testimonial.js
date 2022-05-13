@@ -3,12 +3,12 @@ import React from "react";
 const Testimonial = ({ data }) => {
   const { name, img, description, location } = data;
   return (
-    <div class="card lg:max-w-lg bg-base-100 shadow-xl">
-      <div class="card-body">
+    <div className="card lg:max-w-lg bg-base-100 shadow-xl">
+      <div className="card-body">
         <p>{description}</p>
-        <div class="card-actions flex justify-start my-[36px] items-center">
-          <div class="avatar">
-            <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+        <div className="card-actions flex justify-start my-[36px] items-center">
+          <div className="avatar">
+            <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
               <img src={img} alt="people" className="h-[64px]" />
             </div>
           </div>

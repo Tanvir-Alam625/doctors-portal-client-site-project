@@ -18,21 +18,21 @@ const Contact = () => {
           <input
             type="text"
             placeholder="Email Address"
-            class=" rounded-lg outline-none  text-xl my-[20px] p-[14px] w-full"
+            className=" rounded-lg outline-none  text-xl my-[20px] p-[14px] w-full"
           />{" "}
           <br />
           <input
             type="text"
             placeholder="Subject"
-            class="rounded-lg outline-none text-xl my-[20px] p-[14px]  w-full"
+            className="rounded-lg outline-none text-xl my-[20px] p-[14px]  w-full"
           />{" "}
           <br />
           <textarea
-            class="textarea text-xl my-[20px] p-[14px]  w-full h-[136px]"
+            className="textarea text-xl my-[20px] p-[14px]  w-full h-[136px]"
             placeholder="Message"
           ></textarea>
           <br />
-          <button class=" my-[15px] rounded-lg py-[15px] px-[35px] bg-primary text-base-100 text-center  text-xl">
+          <button className=" my-[15px] rounded-lg py-[15px] px-[35px] bg-primary text-base-100 text-center  text-xl">
             Submit
           </button>
         </form>

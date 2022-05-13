@@ -3,9 +3,9 @@ import React from "react";
 const AvailableAppointment = ({ data, setTreatment }) => {
   const { name, _id, slots } = data;
   return (
-    <div class="card lg:max-w-lg hover:border  shadow-lg text-neutral-content">
-      <div class="card-body items-center text-center">
-        <h2 class="card-title text-secondary font-semibold mb-[10px] p-0">
+    <div className="card lg:max-w-lg hover:border  shadow-lg text-neutral-content">
+      <div className="card-body items-center text-center">
+        <h2 className="card-title text-secondary font-semibold mb-[10px] p-0">
           {name}
         </h2>
 
@@ -19,12 +19,12 @@ const AvailableAppointment = ({ data, setTreatment }) => {
         <p className="text-sm mb-[15px] p-0 text-neutral">
           {slots.length} {slots.length < 1 ? "SPACE" : "SPACES"} AVAILABLE
         </p>
-        <div class="card-actions justify-end">
+        <div className="card-actions justify-end">
           <label
             disabled={slots.length === 0}
             for="booked"
             onClick={() => setTreatment(data)}
-            class="btn btn-primary  modal-button uppercase text-base-100 bg-gradient-to-r from-secondary to-primary"
+            className="btn btn-primary  modal-button uppercase text-base-100 bg-gradient-to-r from-secondary to-primary"
           >
             book appointment
           </label>

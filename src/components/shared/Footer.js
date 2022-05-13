@@ -20,28 +20,28 @@ const Footer = () => {
             </h2>
             <a
               href="#"
-              class="link link-hover text-accent hover:link-primary mb-[14px]"
+              className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               Emergency Checkup
             </a>{" "}
             <br />
             <a
               href="#"
-              class="link link-hover text-accent hover:link-primary mb-[14px]"
+              className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               Monthly Checkup
             </a>{" "}
             <br />
             <a
               href="#"
-              class="link link-hover text-accent hover:link-primary mb-[14px]"
+              className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               Weekly Checkup
             </a>{" "}
             <br />
             <a
               href="#"
-              class="link link-hover text-accent hover:link-primary mb-[14px]"
+              className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               Deep Checkup
             </a>{" "}
@@ -53,21 +53,21 @@ const Footer = () => {
             </h2>
             <a
               href="#"
-              class="link link-hover text-accent hover:link-primary mb-[14px]"
+              className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               Fluoride Treatment
             </a>{" "}
             <br />
             <a
               href="#"
-              class="link link-hover text-accent hover:link-primary mb-[14px]"
+              className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               Cavity Filling
             </a>{" "}
             <br />
             <a
               href="#"
-              class="link link-hover text-accent hover:link-primary mb-[14px]"
+              className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               Teath Whitening
             </a>{" "}
@@ -78,7 +78,7 @@ const Footer = () => {
             </h2>
             <a
               href="#"
-              class="link link-hover text-accent hover:link-primary mb-[14px]"
+              className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               New York - 101010 Hudson
             </a>{" "}

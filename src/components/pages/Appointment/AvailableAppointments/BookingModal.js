@@ -25,16 +25,18 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
   };
   return (
     <div>
-      <input type="checkbox" id="booked" class="modal-toggle" />
-      <div class="modal">
-        <div class="modal-box relative">
+      <input type="checkbox" id="booked" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box relative">
           <label
             for="booked"
-            class="btn btn-sm btn-circle absolute right-2 top-2"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
           </label>
-          <h3 class="text-lg font-semibold text-accent mb-[50px]">{name}</h3>
+          <h3 className="text-lg font-semibold text-accent mb-[50px]">
+            {name}
+          </h3>
 
           <form className="w-full" onSubmit={handleSubmitForm}>
             <input
@@ -43,9 +45,12 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
               readOnly
               name="date"
               disabled
-              class="input w-full  my-[12px] bg-[#E6E6E6]"
+              className="input w-full  my-[12px] bg-[#E6E6E6]"
             />
-            <select name="slot" class="select w-full my-[12px]  bg-[#E6E6E6]">
+            <select
+              name="slot"
+              className="select w-full my-[12px]  bg-[#E6E6E6]"
+            >
               {slots.map((slot) => (
                 <option value={slot}>{slot}</option>
               ))}
@@ -54,21 +59,21 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
               type="text"
               name="name"
               placeholder="Full Name"
-              class="input w-full input-bordered  my-[12px]"
+              className="input w-full input-bordered  my-[12px]"
               required
             />
             <input
               type="text"
               name="phone"
               placeholder="Phone Number"
-              class="input w-full input-bordered  my-[12px]"
+              className="input w-full input-bordered  my-[12px]"
               required
             />
             <input
               type="email"
               placeholder="Email"
               name="email"
-              class="input w-full input-bordered my-[12px]"
+              className="input w-full input-bordered my-[12px]"
               required
             />
             <button
