@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../../firebase.init";
 // import { useForm } from "react-hook-form";
 
 const Login = () => {
@@ -9,8 +14,30 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle, googleUser, googleLoading, googleError] =
+    useSignInWithGoogle(auth);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user || googleUser) {
+      navigate("/");
+    }
+  }, [user, googleUser, navigate]);
+
+  if (googleLoading) {
+    return <p>Loading...</p>;
+  }
+
+  let handleErrorMessage;
+  if (error || googleError) {
+    handleErrorMessage = error?.message;
+    console.log(error);
+  }
+
   const onSubmit = (data) => {
-    console.log(data);
+    signInWithEmailAndPassword(data.email, data.password);
   };
   return (
     <div className="flex justify-center min-h-screen items-center">
@@ -65,11 +92,13 @@ const Login = () => {
               Forget Password?
             </Link>
           </div>
+          <p className="text-red-500">{handleErrorMessage}</p>
           <button
             type="submit"
+            disabled={loading || googleLoading ? true : false}
             className="uppercase text-base-100 mb-[15px] bg-accent w-full rounded-lg p-[15px]"
           >
-            login
+            {loading ? <>Loading...</> : <>login</>}
           </button>
         </form>
         <p className="text- text-center mb-[16px]">
@@ -79,7 +108,10 @@ const Login = () => {
           </Link>
         </p>
         <div className="divider mb-[25px]">OR</div>
-        <button className="uppercase border w-full border-accent text-xl p-[15px] rounded-lg">
+        <button
+          className="uppercase border w-full border-accent text-xl p-[15px] rounded-lg"
+          onClick={() => signInWithGoogle()}
+        >
           continue with Google
         </button>
       </div>

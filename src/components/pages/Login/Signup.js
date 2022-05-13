@@ -1,20 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../../firebase.init";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 
 const Signup = () => {
+  const [signInWithGoogle, googleUser, googleLoading, googleError] =
+    useSignInWithGoogle(auth);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  const navigate = useNavigate();
+  let handleErrorMessage;
+
+  if (error || googleError) {
+    handleErrorMessage = error?.message;
+  }
+
+  useEffect(() => {
+    if (user || googleUser) {
+      navigate("/");
+    }
+  }, [user, googleUser, navigate]);
+
+  if (googleLoading) {
+    return <p>Loading...</p>;
+  }
+
   const onSubmit = (data) => {
-    console.log(data);
+    createUserWithEmailAndPassword(data.email, data.password);
   };
   return (
     <div className="flex justify-center min-h-screen items-center">
       <div className="shadow-lg rounded-lg w-full text-accent  mx-2 p-[30px] lg:w-96 ">
-        <h2 className="text-center text-[20px] mt-[15px]  mb-[30px]">Login</h2>
+        <h2 className="text-center text-[20px] mt-[15px]  mb-[30px]">
+          Sign Up
+        </h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="input-box mb-[10px]">
             <label htmlFor="name">Name</label>
@@ -77,11 +105,13 @@ const Signup = () => {
                   errors.password?.message)}
             </label>
           </div>
+          <p className="text-red-400">{handleErrorMessage}</p>
           <button
             type="submit"
+            disabled={loading || googleLoading ? true : false}
             className="uppercase text-base-100 mb-[15px] bg-accent w-full rounded-lg p-[15px]"
           >
-            login
+            {loading ? <>Loading...</> : <>Sign Up</>}
           </button>
         </form>
         <p className="text- text-center mb-[16px]">
@@ -91,7 +121,10 @@ const Signup = () => {
           </Link>
         </p>
         <div className="divider mb-[25px]">OR</div>
-        <button className="uppercase border w-full border-accent text-xl p-[15px] rounded-lg">
+        <button
+          className="uppercase border w-full border-accent text-xl p-[15px] rounded-lg"
+          onClick={() => signInWithGoogle()}
+        >
           continue with Google
         </button>
       </div>

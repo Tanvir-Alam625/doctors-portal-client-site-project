@@ -1,8 +1,11 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useLocation } from "react-router-dom";
-
+import auth from "../../firebase.init";
+import { signOut } from "firebase/auth";
 const Header = () => {
   const location = useLocation();
+  const [user] = useAuthState(auth);
 
   const link = (
     <>
@@ -10,7 +13,7 @@ const Header = () => {
         <Link
           className={`${
             location.pathname === "/"
-              ? "bg-accent text-base-100"
+              ? "bg-accent text-base-100 hover:bg-accent"
               : " text-accent"
           }`}
           to="/"
@@ -23,7 +26,7 @@ const Header = () => {
         <Link
           className={`${
             location.pathname === "/about"
-              ? "bg-accent text-base-100"
+              ? "bg-accent text-base-100 hover:bg-accent"
               : " text-accent"
           }`}
           to="/about"
@@ -35,7 +38,7 @@ const Header = () => {
         <Link
           className={`${
             location.pathname === "/appointment"
-              ? "bg-accent text-base-100"
+              ? "bg-accent text-base-100 hover:bg-accent"
               : " text-accent"
           }`}
           to="/appointment"
@@ -47,7 +50,7 @@ const Header = () => {
         <Link
           className={`${
             location.pathname === "/reviews"
-              ? "bg-accent text-base-100"
+              ? "bg-accent text-base-100 hover:bg-accent"
               : " text-accent"
           }`}
           to="/reviews"
@@ -59,7 +62,7 @@ const Header = () => {
         <Link
           className={`${
             location.pathname === "/contact"
-              ? "bg-accent text-base-100"
+              ? "bg-accent text-base-100 hover:bg-accent"
               : " text-accent"
           }`}
           to="/contact"
@@ -67,18 +70,27 @@ const Header = () => {
           Contact Us
         </Link>
       </li>
-      <li>
-        <Link
-          className={`${
-            location.pathname === "/login"
-              ? "bg-accent text-base-100"
-              : " text-accent"
-          }`}
-          to="/login"
+      {user ? (
+        <button
+          onClick={() => signOut(auth)}
+          className="btn  uppercase bg-base-100 hover:text-base-100 text-accent"
         >
-          Login
-        </Link>
-      </li>
+          Sign Out
+        </button>
+      ) : (
+        <li>
+          <Link
+            className={`${
+              location.pathname === "/login"
+                ? "bg-accent text-base-100 hover:bg-accent"
+                : " text-accent"
+            }`}
+            to="/login"
+          >
+            Login
+          </Link>
+        </li>
+      )}
     </>
   );
   return (
@@ -86,7 +98,7 @@ const Header = () => {
       <div className="navbar bg-base-100 ">
         <div className="navbar">
           <div className="dropdown">
-            <label tabindex="0" className="btn btn-ghost lg:hidden">
+            <label tabIndex="0" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -103,7 +115,7 @@ const Header = () => {
               </svg>
             </label>
             <ul
-              tabindex="0"
+              tabIndex="0"
               className="menu font-semibold menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               {link}
