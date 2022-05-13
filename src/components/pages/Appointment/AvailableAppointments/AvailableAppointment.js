@@ -22,7 +22,7 @@ const AvailableAppointment = ({ data, setTreatment }) => {
         <div className="card-actions justify-end">
           <label
             disabled={slots.length === 0}
-            for="booked"
+            htmlFor="booked"
             onClick={() => setTreatment(data)}
             className="btn btn-primary  modal-button uppercase text-base-100 bg-gradient-to-r from-secondary to-primary"
           >

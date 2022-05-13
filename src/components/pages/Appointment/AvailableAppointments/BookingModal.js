@@ -30,7 +30,7 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
       <div className="modal">
         <div className="modal-box relative">
           <label
-            for="booked"
+            htmlFor="booked"
             className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
@@ -52,8 +52,10 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
               name="slot"
               className="select w-full my-[12px]  bg-[#E6E6E6]"
             >
-              {slots.map((slot) => (
-                <option value={slot}>{slot}</option>
+              {slots.map((slot, index) => (
+                <option key={index} value={slot}>
+                  {slot}
+                </option>
               ))}
             </select>
             <input

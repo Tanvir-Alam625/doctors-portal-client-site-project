@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useLocation } from "react-router-dom";
 import auth from "../../firebase.init";
 import { signOut } from "firebase/auth";
+import { MenuAlt1Icon } from "@heroicons/react/solid";
 const Header = () => {
   const location = useLocation();
   const [user] = useAuthState(auth);
@@ -99,20 +100,7 @@ const Header = () => {
         <div className="navbar">
           <div className="dropdown">
             <label tabIndex="0" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+              <MenuAlt1Icon className="h-5 w-5 text-accent" />
             </label>
             <ul
               tabIndex="0"

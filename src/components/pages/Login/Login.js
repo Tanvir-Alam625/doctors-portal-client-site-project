@@ -4,7 +4,7 @@ import {
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Spinner from "../../Spinner/Spinner";
 // import { useForm } from "react-hook-form";
@@ -20,15 +20,15 @@ const Login = () => {
   const [signInWithGoogle, googleUser, googleLoading, googleError] =
     useSignInWithGoogle(auth);
   const navigate = useNavigate();
-
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   useEffect(() => {
     if (user || googleUser) {
-      navigate("/");
-      console.log(user);
+      navigate(from, { replace: true });
     }
-  }, [user, googleUser, navigate]);
+  }, [from, user, googleUser, navigate]);
 
-  if (true || googleLoading) {
+  if (googleLoading) {
     return <Spinner />;
   }
 

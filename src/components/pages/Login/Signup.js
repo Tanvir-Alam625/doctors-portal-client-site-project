@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
+import Spinner from "../../Spinner/Spinner";
 
 const Signup = () => {
   const [displayName, setDisplayName] = useState("");
@@ -21,20 +22,22 @@ const Signup = () => {
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [updateProfile, updating, updateerror] = useUpdateProfile(auth);
   const navigate = useNavigate();
+  const location = useLocation();
   let handleErrorMessage;
 
   if (error || googleError) {
     handleErrorMessage = error?.message;
   }
 
+  let from = location.state?.from?.pathname || "/";
   useEffect(() => {
     if (user || googleUser) {
-      navigate("/");
+      navigate(from, { replace: true });
     }
-  }, [user, googleUser, navigate]);
+  }, [from, user, googleUser, navigate]);
 
   if (googleLoading) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   const onSubmit = async (data) => {
