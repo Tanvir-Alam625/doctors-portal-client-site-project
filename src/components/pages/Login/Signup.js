@@ -1,38 +1,81 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <div className="flex justify-center min-h-screen items-center">
       <div className="shadow-lg rounded-lg w-full text-accent  mx-2 p-[30px] lg:w-96 ">
         <h2 className="text-center text-[20px] mt-[15px]  mb-[30px]">Login</h2>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="input-box mb-[10px]">
             <label htmlFor="name">Name</label>
             <input
               type="name"
-              name="name"
+              {...register("name", {
+                required: { value: true, message: "Name is required" },
+                minLength: {
+                  value: 3,
+                  message: "Name length must be 3 character ",
+                },
+              })}
               id="name"
               className="input input-bordered w-full"
             />
+            <label htmlFor="password" className="text-red-400 text-xs">
+              {(errors.name?.type === "required" && errors.name?.message) ||
+                (errors.name?.type === "minLength" && errors.name?.message)}
+            </label>
           </div>
           <div className="input-box mb-[10px]">
             <label htmlFor="email">Email</label>
             <input
               type="email"
-              name="email"
+              {...register("email", {
+                required: { value: true, message: "Email is required" },
+                pattern: {
+                  value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                  message: "Please Enter the valid Email",
+                },
+              })}
               id="email"
               className="input input-bordered w-full"
             />
+            <label htmlFor="email" className="text-red-400">
+              {(errors.email?.type === "required" && errors.email?.message) ||
+                (errors.email?.type === "pattern" && errors.email?.message)}
+            </label>
           </div>
-          <div className="input-box">
+          <div className="input-box mb-[30px]">
             <label htmlFor="password">Password</label>
             <input
               type="password"
-              className="input input-bordered w-full mb-[30px]"
-              name="password"
+              className="input input-bordered w-full "
+              {...register("password", {
+                required: { value: true, message: "Password is required" },
+                pattern: {
+                  value:
+                    /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
+                  message:
+                    " Password should be  contain  6-16 character  and at least one lower case, upper case, number and special character ",
+                },
+              })}
               id="password"
             />
+            <label htmlFor="password" className="text-red-400 text-xs">
+              {(errors.password?.type === "required" &&
+                errors.password?.message) ||
+                (errors.password?.type === "pattern" &&
+                  errors.password?.message)}
+            </label>
           </div>
           <button
             type="submit"

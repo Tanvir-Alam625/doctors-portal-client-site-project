@@ -31,7 +31,7 @@ const Login = () => {
               id="email"
               className="input input-bordered w-full"
             />
-            <label htmlFor="email" className="text-red-400">
+            <label htmlFor="email" className="text-red-400 text-xs">
               {(errors.email?.type === "required" && errors.email?.message) ||
                 (errors.email?.type === "pattern" && errors.email?.message)}
             </label>
@@ -50,7 +50,7 @@ const Login = () => {
               })}
               id="password"
             />
-            <label htmlFor="password" className="text-red-400">
+            <label htmlFor="password" className="text-red-400 text-xs">
               {(errors.password?.type === "required" &&
                 errors.password?.message) ||
                 (errors.password?.type === "minLength" &&
