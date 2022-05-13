@@ -109,7 +109,11 @@ const Header = () => {
               {link}
             </ul>
           </div>
-          <h2 className="btn btn-ghost normal-case text-xl">Doctors Portal</h2>
+          <Link to="/">
+            <h2 className="font-semibold text-accent text-xl">
+              Doctors Portal
+            </h2>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex justify-end">
           <ul className="menu menu-horizontal p-0 font-semibold">{link}</ul>

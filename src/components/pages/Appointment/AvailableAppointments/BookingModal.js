@@ -1,13 +1,16 @@
 import { format } from "date-fns";
-import React from "react";
+import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
+import auth from "../../../../firebase.init";
 
 const BookingModal = ({ treatment, date, setTreatment }) => {
   const { _id, name, slots } = treatment;
+  const [user] = useAuthState(auth);
   const handleSubmitForm = (event) => {
     event.preventDefault();
     const slot = event.target.slot.value;
-    const email = event.target.email.value;
+    const email = user.email;
     const phone = event.target.phone.value;
     const date = event.target.date.value;
     const bookedData = { name, email, date, phone, slot };
@@ -21,8 +24,8 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
       .then((res) => res.json())
       .then(async (result) => {
         toast.success("Successfully Booked!");
+        setTreatment(null);
       });
-    setTreatment(null);
   };
   return (
     <div>
@@ -74,7 +77,9 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
             />
             <input
               type="email"
-              placeholder="Email"
+              disabled
+              readOnly
+              value={user.email}
               name="email"
               className="input w-full input-bordered my-[12px]"
               required
