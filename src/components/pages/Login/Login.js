@@ -23,6 +23,7 @@ const Login = () => {
   useEffect(() => {
     if (user || googleUser) {
       navigate("/");
+      console.log(user);
     }
   }, [user, googleUser, navigate]);
 

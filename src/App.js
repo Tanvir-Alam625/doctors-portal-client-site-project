@@ -10,6 +10,9 @@ import Login from "./components/pages/Login/Login";
 import Reset from "./components/pages/Login/Reset";
 import Signup from "./components/pages/Login/Signup";
 import NotFound from "./components/NotFound/NotFound";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   return (
     <div>
@@ -26,6 +29,7 @@ function App() {
         {/* not found route  */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

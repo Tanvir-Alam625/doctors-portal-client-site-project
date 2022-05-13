@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 
 const Signup = () => {
+  const [displayName, setDisplayName] = useState("");
   const [signInWithGoogle, googleUser, googleLoading, googleError] =
     useSignInWithGoogle(auth);
   const {
@@ -16,7 +18,8 @@ const Signup = () => {
     handleSubmit,
   } = useForm();
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+  const [updateProfile, updating, updateerror] = useUpdateProfile(auth);
   const navigate = useNavigate();
   let handleErrorMessage;
 
@@ -34,8 +37,9 @@ const Signup = () => {
     return <p>Loading...</p>;
   }
 
-  const onSubmit = (data) => {
-    createUserWithEmailAndPassword(data.email, data.password);
+  const onSubmit = async (data) => {
+    await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: displayName });
   };
   return (
     <div className="flex justify-center min-h-screen items-center">
@@ -48,6 +52,7 @@ const Signup = () => {
             <label htmlFor="name">Name</label>
             <input
               type="name"
+              onChange={(e) => setDisplayName(e.target.value)}
               {...register("name", {
                 required: { value: true, message: "Name is required" },
                 minLength: {
