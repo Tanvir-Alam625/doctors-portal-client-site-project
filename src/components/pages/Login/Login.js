@@ -6,6 +6,7 @@ import {
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import Spinner from "../../Spinner/Spinner";
 // import { useForm } from "react-hook-form";
 
 const Login = () => {
@@ -27,8 +28,8 @@ const Login = () => {
     }
   }, [user, googleUser, navigate]);
 
-  if (googleLoading) {
-    return <p>Loading...</p>;
+  if (true || googleLoading) {
+    return <Spinner />;
   }
 
   let handleErrorMessage;

@@ -52,6 +52,7 @@ const Reset = () => {
                   (errors.email?.type === "pattern" && errors.email?.message)}
               </label>
               <br />
+              <p className="text-red-500 text-xs">{error?.message}</p>
               <button className="btn shadow-md text-base-100 bg-accent px-2 w-full">
                 {sending ? <>Sending..</> : <>Submit</>}
               </button>

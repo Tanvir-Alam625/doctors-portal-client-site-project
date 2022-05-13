@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import React from "react";
+import { toast } from "react-toastify";
 
 const BookingModal = ({ treatment, date, setTreatment }) => {
   const { _id, name, slots } = treatment;
@@ -18,8 +19,8 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
       body: JSON.stringify(bookedData),
     })
       .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
+      .then(async (result) => {
+        toast.success("Successfully Booked!");
       });
     setTreatment(null);
   };
