@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import footer from "../../assets/images/footer.png";
 const Footer = () => {
   return (
@@ -18,70 +19,70 @@ const Footer = () => {
             <h2 className="uppercase font-bold mb-[20px]  text-accent text-2xl ">
               services
             </h2>
-            <a
-              href="#"
+            <Link
+              to="/"
               className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               Emergency Checkup
-            </a>{" "}
+            </Link>{" "}
             <br />
-            <a
-              href="#"
+            <Link
+              to="/"
               className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               Monthly Checkup
-            </a>{" "}
+            </Link>{" "}
             <br />
-            <a
-              href="#"
+            <Link
+              to="/"
               className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               Weekly Checkup
-            </a>{" "}
+            </Link>{" "}
             <br />
-            <a
-              href="#"
+            <Link
+              to="/"
               className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               Deep Checkup
-            </a>{" "}
+            </Link>{" "}
             <br />
           </div>
           <div className="oral-health">
             <h2 className="uppercase font-bold mb-[20px]  text-accent text-2xl ">
               oral health
             </h2>
-            <a
-              href="#"
+            <Link
+              to="/"
               className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               Fluoride Treatment
-            </a>{" "}
+            </Link>{" "}
             <br />
-            <a
-              href="#"
+            <Link
+              to="/"
               className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               Cavity Filling
-            </a>{" "}
+            </Link>{" "}
             <br />
-            <a
-              href="#"
+            <Link
+              to="/"
               className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               Teath Whitening
-            </a>{" "}
+            </Link>{" "}
           </div>
           <div className="our-address">
             <h2 className="uppercase font-bold mb-[20px]  text-accent text-2xl ">
               our address
             </h2>
-            <a
-              href="#"
+            <Link
+              to="/"
               className="link link-hover text-accent hover:link-primary mb-[14px]"
             >
               New York - 101010 Hudson
-            </a>{" "}
+            </Link>{" "}
           </div>
         </div>
         <div className="flex justify-center">
