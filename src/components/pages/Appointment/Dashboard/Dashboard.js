@@ -18,7 +18,7 @@ const Dashboard = () => {
           <li>
             <Link
               to="/dashboard"
-              className={` text-accent ${
+              className={` text-accent font-semibold ${
                 location.pathname === "/dashboard"
                   ? "bg-accent text-white"
                   : "bg-white text-accent"
@@ -29,7 +29,7 @@ const Dashboard = () => {
           </li>
           <li>
             <Link
-              className={` text-accent ${
+              className={` text-accent font-semibold ${
                 location.pathname === "/dashboard/myReviews"
                   ? "bg-accent text-white"
                   : "bg-white text-accent"
