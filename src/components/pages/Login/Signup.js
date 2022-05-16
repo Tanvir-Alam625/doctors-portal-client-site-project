@@ -8,6 +8,7 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import Spinner from "../../Spinner/Spinner";
+import useToken from "../../hooks/useToken";
 
 const Signup = () => {
   const [displayName, setDisplayName] = useState("");
@@ -21,6 +22,7 @@ const Signup = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [updateProfile, updating, updateerror] = useUpdateProfile(auth);
+  const [token] = useToken(user || googleUser);
   const navigate = useNavigate();
   const location = useLocation();
   let handleErrorMessage;
@@ -31,10 +33,10 @@ const Signup = () => {
 
   let from = location.state?.from?.pathname || "/";
   useEffect(() => {
-    if (user || googleUser) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [from, user, googleUser, navigate]);
+  }, [from, token, navigate]);
 
   if (googleLoading) {
     return <Spinner />;

@@ -6,6 +6,7 @@ import {
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import useToken from "../../hooks/useToken";
 import Spinner from "../../Spinner/Spinner";
 // import { useForm } from "react-hook-form";
 
@@ -19,14 +20,15 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, googleUser, googleLoading, googleError] =
     useSignInWithGoogle(auth);
+  const [token] = useToken(user || googleUser);
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
   useEffect(() => {
-    if (user || googleUser) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [from, user, googleUser, navigate]);
+  }, [from, token, navigate]);
 
   if (googleLoading) {
     return <Spinner />;

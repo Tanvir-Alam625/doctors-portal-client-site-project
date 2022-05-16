@@ -7,8 +7,6 @@ const MyAppointment = () => {
       .then((res) => res.json())
       .then((data) => setBooked(data));
   }, []);
-
-  console.log(booked);
   return (
     <div>
       <h2 className="text-2xl font-bold ">My Appointment</h2>
