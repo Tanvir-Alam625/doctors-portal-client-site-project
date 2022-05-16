@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../../firebase.init";
 
 const MyAppointment = () => {
   const [booked, setBooked] = useState([]);
+  const [user] = useAuthState(auth);
+
   useEffect(() => {
-    fetch("http://localhost:5000/booking")
+    const email = user?.email;
+    fetch(`http://localhost:5000/booking?email=${email}`)
       .then((res) => res.json())
       .then((data) => setBooked(data));
   }, []);
@@ -17,7 +22,7 @@ const MyAppointment = () => {
             <tr className="uppercase font-bold text-accent">
               <th>No:</th>
               <th>Name</th>
-              <th>Email</th>
+              <th>Date</th>
               <th>Service</th>
               <th>Time</th>
             </tr>
@@ -28,7 +33,7 @@ const MyAppointment = () => {
               <tr className="text-xs md:text-sm ">
                 <th>{index + 1}</th>
                 <td className="capitalize">{book.patientName}</td>
-                <td>{book.patientEmail}</td>
+                <td>{book.date}</td>
                 <td className="capitalize">{book.treatment}</td>
                 <td className="uppercase">{book.slot}</td>
               </tr>
