@@ -4,23 +4,39 @@ import React, { useEffect, useState } from "react";
 import AvailableAppointment from "./AvailableAppointment";
 import BookingModal from "./BookingModal";
 import Spinner from "../../../Spinner/Spinner";
+import { useQuery } from "react-query";
 
 const AvailableAppointments = ({ date }) => {
-  const [appointments, setAppointments] = useState([]);
+  // const [appointments, setAppointments] = useState([]);
   const [treatment, setTreatment] = useState(null);
-  const [spinner, setSpinner] = useState(false);
+  // const [spinner, setSpinner] = useState(false);
+  const formatedDate = format(date, "PP");
 
-  useEffect(() => {
-    setSpinner(true);
-    fetch("http://localhost:5000/service")
-      .then((res) => res.json())
-      .then((data) => {
-        setAppointments(data);
-        setSpinner(false);
-      });
-  }, [date]);
-  if (spinner) {
+  const {
+    data: appointments,
+    isLoading,
+    error,
+    refetch,
+  } = useQuery(["available", formatedDate], () =>
+    fetch(`http://localhost:5000/available?date=${formatedDate}`).then((res) =>
+      res.json()
+    )
+  );
+  // useEffect(() => {
+  //   setSpinner(true);
+  //   fetch(`http://localhost:5000/available?date=${formatedDate}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setAppointments(data);
+  //       setSpinner(false);
+  //     });
+  // }, [formatedDate]);
+
+  if (isLoading) {
     return <Spinner />;
+  }
+  if (error) {
+    console.log(error);
   }
   return (
     <section className="lg:px-12 px-2 max-w-7xl  mx-auto lg:mb-28 mb-12">
@@ -28,7 +44,7 @@ const AvailableAppointments = ({ date }) => {
         Available Appointments on {format(date, "PP")}
       </h5>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {appointments.map((appointment) => (
+        {appointments?.map((appointment) => (
           <AvailableAppointment
             key={appointment._id}
             data={appointment}
@@ -41,6 +57,7 @@ const AvailableAppointments = ({ date }) => {
           treatment={treatment}
           date={date}
           setTreatment={setTreatment}
+          refetch={refetch}
         />
       )}
     </section>

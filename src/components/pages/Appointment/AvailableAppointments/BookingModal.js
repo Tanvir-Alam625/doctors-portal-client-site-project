@@ -5,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import auth from "../../../../firebase.init";
 
-const BookingModal = ({ treatment, date, setTreatment }) => {
+const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
   const { _id, name, slots } = treatment;
   const [user] = useAuthState(auth);
   const handleSubmitForm = (event) => {
@@ -42,6 +42,7 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
           );
         }
         setTreatment(null);
+        refetch();
       });
   };
   return (

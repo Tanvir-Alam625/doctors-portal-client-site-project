@@ -3,7 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useLocation } from "react-router-dom";
 import auth from "../../firebase.init";
 import { signOut } from "firebase/auth";
-import { MenuAlt1Icon } from "@heroicons/react/solid";
+import { MenuAlt1Icon, MenuIcon } from "@heroicons/react/solid";
 const Header = () => {
   const location = useLocation();
   const [user] = useAuthState(auth);
@@ -71,10 +71,25 @@ const Header = () => {
           Contact Us
         </Link>
       </li>
+      {user && (
+        <li>
+          <Link
+            className={`${
+              location.pathname === "/dashboard" ||
+              location.pathname === "/dashboard/myReviews"
+                ? "bg-accent text-base-100 hover:bg-accent"
+                : " text-accent"
+            }`}
+            to="/dashboard"
+          >
+            Dashboard
+          </Link>
+        </li>
+      )}
       {user ? (
         <button
           onClick={() => signOut(auth)}
-          className="btn  uppercase bg-base-100 hover:text-base-100 text-accent"
+          className="btn  uppercase bg-base-100 hover:text-base-100 lg:ml-4  ml-0 text-accent"
         >
           Sign Out
         </button>
@@ -117,6 +132,11 @@ const Header = () => {
         </div>
         <div className="navbar-center hidden lg:flex justify-end">
           <ul className="menu menu-horizontal p-0 font-semibold">{link}</ul>
+        </div>
+        <div className="absolute right-[20px] top-[20px]">
+          <label for="dashboard-menu" class=" bg-white   lg:hidden">
+            <MenuIcon className="h-6 w-6 text-accent" />
+          </label>
         </div>
       </div>
     </div>

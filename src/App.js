@@ -14,6 +14,9 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RequireAuth from "./components/pages/Login/RequireAuth";
 import { useEffect, useState } from "react";
+import Dashboard from "./components/pages/Appointment/Dashboard/Dashboard";
+import MyAppointment from "./components/pages/Appointment/Dashboard/MyAppointment";
+import DashboardReviews from "./components/pages/Appointment/Dashboard/DashboardReviews";
 
 function App() {
   let [online, isOnline] = useState(navigator.onLine);
@@ -53,6 +56,17 @@ function App() {
             </RequireAuth>
           }
         />
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          }
+        >
+          <Route index element={<MyAppointment />} />
+          <Route path="/dashboard/myReviews" element={<DashboardReviews />} />
+        </Route>
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
