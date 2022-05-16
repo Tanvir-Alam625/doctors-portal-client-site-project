@@ -19,6 +19,7 @@ import MyAppointment from "./components/pages/Appointment/Dashboard/MyAppointmen
 import DashboardReviews from "./components/pages/Appointment/Dashboard/DashboardReviews";
 import MyHistory from "./components/pages/Appointment/Dashboard/MyHistory";
 import Users from "./components/pages/Appointment/Dashboard/Users";
+import RequireAdmin from "./components/pages/Login/RequireAdmin";
 
 function App() {
   let [online, isOnline] = useState(navigator.onLine);
@@ -69,7 +70,14 @@ function App() {
           <Route index element={<MyAppointment />} />
           <Route path="/dashboard/myReviews" element={<DashboardReviews />} />
           <Route path="/dashboard/history" element={<MyHistory />} />
-          <Route path="/dashboard/users" element={<Users />} />
+          <Route
+            path="/dashboard/users"
+            element={
+              <RequireAdmin>
+                <Users />
+              </RequireAdmin>
+            }
+          />
         </Route>
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/login" element={<Login />} />

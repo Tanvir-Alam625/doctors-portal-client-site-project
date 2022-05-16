@@ -1,14 +1,19 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import auth from "../../../../firebase.init";
+import useAdmin from "../../../hooks/UseAdmin";
 
 const Dashboard = () => {
   const location = useLocation();
+  const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
   return (
     <div className="drawer drawer-mobile">
       <input id="dashboard-menu" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content bg-[#F1F5F9] lg:px-[30px] px-2">
         {/* <!-- Page content here --> */}
-        <Outlet className="pt-[40px]" />
+        <Outlet />
       </div>
       <div className="drawer-side">
         <label htmlFor="dashboard-menu" className="drawer-overlay"></label>
@@ -52,19 +57,21 @@ const Dashboard = () => {
               My History
             </Link>
           </li>
-          <li>
-            <Link
-              className={` text-accent font-semibold ${
-                location.pathname === "/dashboard/users"
-                  ? "bg-accent text-white"
-                  : "bg-white text-accent"
-              }`}
-              to="/dashboard/users"
-            >
-              {" "}
-              All Users
-            </Link>
-          </li>
+          {admin && (
+            <li>
+              <Link
+                className={` text-accent font-semibold ${
+                  location.pathname === "/dashboard/users"
+                    ? "bg-accent text-white"
+                    : "bg-white text-accent"
+                }`}
+                to="/dashboard/users"
+              >
+                {" "}
+                All Users
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </div>

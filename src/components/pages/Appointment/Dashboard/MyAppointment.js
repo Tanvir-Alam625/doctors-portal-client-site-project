@@ -19,7 +19,6 @@ const MyAppointment = () => {
       },
     })
       .then((res) => {
-        console.log(res);
         if (res.status === 403) {
           toast.error("Oops! Forbidden Access 403, Please Login");
           navigate("/login");
