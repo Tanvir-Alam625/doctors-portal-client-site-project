@@ -22,18 +22,9 @@ const AvailableAppointments = ({ date }) => {
       res.json()
     )
   );
-  // useEffect(() => {
-  //   setSpinner(true);
-  //   fetch(`http://localhost:5000/available?date=${formatedDate}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setAppointments(data);
-  //       setSpinner(false);
-  //     });
-  // }, [formatedDate]);
 
   if (isLoading) {
-    return <Spinner />;
+    return <h2 className="text-2xl text-center ">Loading...</h2>;
   }
   if (error) {
     console.log(error);

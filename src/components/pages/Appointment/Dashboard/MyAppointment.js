@@ -38,7 +38,7 @@ const MyAppointment = () => {
       });
   }, [user, navigate]);
   return (
-    <div>
+    <div className="pt-[40px]">
       <h2 className="text-2xl font-bold ">My Appointment</h2>
       <div className="overflow-x-auto">
         <table className="table w-full mt-[20px]">

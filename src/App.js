@@ -17,6 +17,8 @@ import { useEffect, useState } from "react";
 import Dashboard from "./components/pages/Appointment/Dashboard/Dashboard";
 import MyAppointment from "./components/pages/Appointment/Dashboard/MyAppointment";
 import DashboardReviews from "./components/pages/Appointment/Dashboard/DashboardReviews";
+import MyHistory from "./components/pages/Appointment/Dashboard/MyHistory";
+import Users from "./components/pages/Appointment/Dashboard/Users";
 
 function App() {
   let [online, isOnline] = useState(navigator.onLine);
@@ -66,6 +68,8 @@ function App() {
         >
           <Route index element={<MyAppointment />} />
           <Route path="/dashboard/myReviews" element={<DashboardReviews />} />
+          <Route path="/dashboard/history" element={<MyHistory />} />
+          <Route path="/dashboard/users" element={<Users />} />
         </Route>
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/login" element={<Login />} />

@@ -8,7 +8,7 @@ const Dashboard = () => {
       <input id="dashboard-menu" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content bg-[#F1F5F9] lg:px-[30px] px-2">
         {/* <!-- Page content here --> */}
-        <Outlet />
+        <Outlet className="pt-[40px]" />
       </div>
       <div className="drawer-side">
         <label htmlFor="dashboard-menu" className="drawer-overlay"></label>
@@ -37,6 +37,32 @@ const Dashboard = () => {
             >
               {" "}
               My Reviews
+            </Link>
+          </li>
+          <li>
+            <Link
+              className={` text-accent font-semibold ${
+                location.pathname === "/dashboard/history"
+                  ? "bg-accent text-white"
+                  : "bg-white text-accent"
+              }`}
+              to="/dashboard/history"
+            >
+              {" "}
+              My History
+            </Link>
+          </li>
+          <li>
+            <Link
+              className={` text-accent font-semibold ${
+                location.pathname === "/dashboard/users"
+                  ? "bg-accent text-white"
+                  : "bg-white text-accent"
+              }`}
+              to="/dashboard/users"
+            >
+              {" "}
+              All Users
             </Link>
           </li>
         </ul>
