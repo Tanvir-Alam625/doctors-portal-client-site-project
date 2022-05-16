@@ -137,7 +137,7 @@ const Header = () => {
           <ul className="menu menu-horizontal p-0 font-semibold">{link}</ul>
         </div>
         <div className="absolute right-[20px] top-[20px]">
-          <label for="dashboard-menu" class=" bg-white   lg:hidden">
+          <label htmlFor="dashboard-menu" className=" bg-white   lg:hidden">
             <MenuIcon className="h-6 w-6 text-accent" />
           </label>
         </div>

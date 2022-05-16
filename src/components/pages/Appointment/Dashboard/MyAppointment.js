@@ -1,22 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../../../firebase.init";
+import { signOut } from "firebase/auth";
 
 const MyAppointment = () => {
   const [booked, setBooked] = useState([]);
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const email = user?.email;
-    fetch(`http://localhost:5000/booking?email=${email}`)
-      .then((res) => res.json())
-      .then((data) => setBooked(data));
-  }, []);
+    fetch(`http://localhost:5000/booking?email=${email}`, {
+      method: "GET",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("access-token")}`,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        if (res.status === 403) {
+          toast.error("Oops! Forbidden Access 403, Please Login");
+          navigate("/login");
+          signOut(auth);
+          localStorage.removeItem("access-token");
+        } else if (res.status === 401) {
+          toast.error("Oops! UnAuthorization Access 403, Please Login");
+          navigate("/login");
+          signOut(auth);
+          localStorage.removeItem("access-token");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setBooked(data);
+      });
+  }, [user, navigate]);
   return (
     <div>
       <h2 className="text-2xl font-bold ">My Appointment</h2>
-      <div class="overflow-x-auto">
-        <table class="table w-full mt-[20px]">
+      <div className="overflow-x-auto">
+        <table className="table w-full mt-[20px]">
           {/* <!-- head --> */}
           <thead>
             <tr className="uppercase font-bold text-accent">
@@ -30,7 +55,7 @@ const MyAppointment = () => {
           <tbody>
             {/* <!-- row 1 --> */}
             {booked.map((book, index) => (
-              <tr className="text-xs md:text-sm ">
+              <tr className="text-xs md:text-sm " key={index}>
                 <th>{index + 1}</th>
                 <td className="capitalize">{book.patientName}</td>
                 <td>{book.date}</td>
