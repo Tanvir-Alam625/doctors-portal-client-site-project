@@ -6,7 +6,7 @@ const UserRow = ({ user, index, refetch }) => {
   const handleMakeAdmin = () => {
     const confirm = window.confirm("Are You Sure?");
     if (confirm) {
-      fetch(`http://localhost:5000/user/admin/${email}`, {
+      fetch(`https://shielded-sierra-98684.herokuapp.com/user/admin/${email}`, {
         method: "PUT",
         headers: {
           authorization: `bearer ${localStorage.getItem("access-token")}`,

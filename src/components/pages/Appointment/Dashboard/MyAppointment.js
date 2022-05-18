@@ -12,12 +12,15 @@ const MyAppointment = () => {
 
   useEffect(() => {
     const email = user?.email;
-    fetch(`http://localhost:5000/booking?email=${email}`, {
-      method: "GET",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("access-token")}`,
-      },
-    })
+    fetch(
+      `https://shielded-sierra-98684.herokuapp.com/booking?email=${email}`,
+      {
+        method: "GET",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access-token")}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 403) {
           toast.error("Oops! Forbidden Access 403, Please Login");
