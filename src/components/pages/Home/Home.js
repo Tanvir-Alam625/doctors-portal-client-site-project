@@ -12,9 +12,7 @@ const Home = () => {
     <main>
       <section
         className="
-        lg:px-12 px-2
-        max-w-7xl
-        mx-auto
+        lg:px-12 px-2 max-w-7xl mx-auto
       "
       >
         <Banner />
@@ -23,9 +21,7 @@ const Home = () => {
       </section>
       <AppointmentHome />
       <section
-        className="lg:px-12 px-2
-      max-w-7xl
-        mx-auto
+        className="lg:px-12 px-2 max-w-7xl mx-auto
       "
       >
         <Testimonial />

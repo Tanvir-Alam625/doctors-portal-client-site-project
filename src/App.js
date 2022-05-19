@@ -20,6 +20,7 @@ import DashboardReviews from "./components/pages/Appointment/Dashboard/Dashboard
 import MyHistory from "./components/pages/Appointment/Dashboard/MyHistory";
 import Users from "./components/pages/Appointment/Dashboard/Users";
 import RequireAdmin from "./components/pages/Login/RequireAdmin";
+import AddDoctor from "./components/pages/Appointment/Dashboard/AddDoctor";
 
 function App() {
   let [online, isOnline] = useState(navigator.onLine);
@@ -78,7 +79,16 @@ function App() {
               </RequireAdmin>
             }
           />
+          <Route
+            path="/dashboard/addDoctor"
+            element={
+              <RequireAdmin>
+                <AddDoctor />
+              </RequireAdmin>
+            }
+          />
         </Route>
+
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

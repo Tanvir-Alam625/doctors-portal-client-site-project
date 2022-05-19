@@ -58,19 +58,34 @@ const Dashboard = () => {
             </Link>
           </li>
           {admin && (
-            <li>
-              <Link
-                className={` text-accent font-semibold ${
-                  location.pathname === "/dashboard/users"
-                    ? "bg-accent text-white"
-                    : "bg-white text-accent"
-                }`}
-                to="/dashboard/users"
-              >
-                {" "}
-                All Users
-              </Link>
-            </li>
+            <>
+              <li>
+                <Link
+                  className={` text-accent font-semibold ${
+                    location.pathname === "/dashboard/users"
+                      ? "bg-accent text-white"
+                      : "bg-white text-accent"
+                  }`}
+                  to="/dashboard/users"
+                >
+                  {" "}
+                  All Users
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className={` text-accent font-semibold ${
+                    location.pathname === "/dashboard/addDoctor"
+                      ? "bg-accent text-white"
+                      : "bg-white text-accent"
+                  }`}
+                  to="/dashboard/addDoctor"
+                >
+                  {" "}
+                  Add Doctors
+                </Link>
+              </li>
+            </>
           )}
         </ul>
       </div>
