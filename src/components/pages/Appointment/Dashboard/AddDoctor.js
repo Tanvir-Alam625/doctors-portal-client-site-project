@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
@@ -9,7 +9,9 @@ const AddDoctor = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
+  const [spinner, setSpinner] = useState(false);
   const imageApiKey = "be60a862641e549cc4f82067a1232062";
   const {
     data: services,
@@ -20,10 +22,11 @@ const AddDoctor = () => {
     fetch(`http://localhost:5000/service`).then((res) => res.json())
   );
 
-  if (isLoading) {
+  if (isLoading || spinner) {
     return <Spinner />;
   }
   const onSubmit = async (data) => {
+    setSpinner(true);
     const image = data.photo[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -35,11 +38,33 @@ const AddDoctor = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
-          toast.success("successfully doctor added!");
+          const doctor = {
+            name: data.name,
+            email: data.email,
+            specialty: data.specialty,
+            img: result.data.url,
+          };
+          fetch("http://localhost:5000/doctors", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              authorization: `bearer ${localStorage.getItem("access-token")}`,
+            },
+            body: JSON.stringify(doctor),
+          })
+            .then((res) => res.json())
+            .then((inserted) => {
+              if (inserted.insertedId) {
+                setSpinner(false);
+                reset();
+                toast.success("successfully doctor added!");
+              } else {
+                toast.error("Failed to add doctor");
+              }
+            });
         } else {
           toast.error("Failed to add doctor");
         }
-        console.log(result);
       });
     // const
   };

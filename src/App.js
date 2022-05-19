@@ -21,6 +21,7 @@ import MyHistory from "./components/pages/Appointment/Dashboard/MyHistory";
 import Users from "./components/pages/Appointment/Dashboard/Users";
 import RequireAdmin from "./components/pages/Login/RequireAdmin";
 import AddDoctor from "./components/pages/Appointment/Dashboard/AddDoctor";
+import ManageDoctors from "./components/pages/Appointment/Dashboard/ManageDoctors";
 
 function App() {
   let [online, isOnline] = useState(navigator.onLine);
@@ -84,6 +85,14 @@ function App() {
             element={
               <RequireAdmin>
                 <AddDoctor />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="/dashboard/manageDoctors"
+            element={
+              <RequireAdmin>
+                <ManageDoctors />
               </RequireAdmin>
             }
           />

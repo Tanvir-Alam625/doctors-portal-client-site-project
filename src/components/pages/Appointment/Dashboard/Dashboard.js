@@ -85,6 +85,19 @@ const Dashboard = () => {
                   Add Doctors
                 </Link>
               </li>
+              <li>
+                <Link
+                  className={` text-accent font-semibold ${
+                    location.pathname === "/dashboard/manageDoctors"
+                      ? "bg-accent text-white"
+                      : "bg-white text-accent"
+                  }`}
+                  to="/dashboard/manageDoctors"
+                >
+                  {" "}
+                  Manage Doctors
+                </Link>
+              </li>
             </>
           )}
         </ul>
