@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
+import { toast } from "react-toastify";
 import Spinner from "../../../Spinner/Spinner";
 
 const AddDoctor = () => {
@@ -9,6 +10,7 @@ const AddDoctor = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const imageApiKey = "be60a862641e549cc4f82067a1232062";
   const {
     data: services,
     isLoading,
@@ -22,7 +24,24 @@ const AddDoctor = () => {
     return <Spinner />;
   }
   const onSubmit = async (data) => {
-    console.log(data);
+    const image = data.photo[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imageApiKey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success) {
+          toast.success("successfully doctor added!");
+        } else {
+          toast.error("Failed to add doctor");
+        }
+        console.log(result);
+      });
+    // const
   };
   return (
     <div className="flex justify-center min-h-screen items-center">
@@ -81,7 +100,7 @@ const AddDoctor = () => {
               className="select select-bordered w-full max-w-xs"
             >
               {services.map((service) => (
-                <option key={service._id} value={service.name} selected>
+                <option key={service._id} value={service.name} defaultValue>
                   {service.name}
                 </option>
               ))}
