@@ -6,7 +6,7 @@ const DoctorRow = ({ data, index, refetch }) => {
   const handleDelete = (id) => {
     const confirmation = window.confirm(`Are You Sure ${name} was delete `);
     if (confirmation) {
-      const url = `http://localhost:5000/doctor/${id}`;
+      const url = `https://shielded-sierra-98684.herokuapp.com/doctor/${id}`;
       fetch(url, {
         method: "DELETE",
         headers: {
@@ -27,7 +27,7 @@ const DoctorRow = ({ data, index, refetch }) => {
       <th>{index + 1}</th>
       <td>
         <div className="avatar">
-          <div className="w-16 rounded">
+          <div className="md:w-16 w-8  rounded">
             <img src={img} alt={name} />
           </div>
         </div>

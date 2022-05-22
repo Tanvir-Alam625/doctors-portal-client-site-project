@@ -19,7 +19,9 @@ const AddDoctor = () => {
     error,
     refetch,
   } = useQuery("service", () =>
-    fetch(`http://localhost:5000/service`).then((res) => res.json())
+    fetch(`https://shielded-sierra-98684.herokuapp.com/service`).then((res) =>
+      res.json()
+    )
   );
 
   if (isLoading || spinner) {
@@ -44,7 +46,7 @@ const AddDoctor = () => {
             specialty: data.specialty,
             img: result.data.url,
           };
-          fetch("http://localhost:5000/doctors", {
+          fetch("https://shielded-sierra-98684.herokuapp.com/doctors", {
             method: "POST",
             headers: {
               "content-type": "application/json",
