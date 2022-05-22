@@ -1,7 +1,12 @@
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Spinner from "../../../Spinner/Spinner";
-
+import CheckoutForm from "./CheckoutForm";
+const stripePromise = loadStripe(
+  "pk_test_51L2DloKYclWXeC9qua479l0HDahKLgcw9xnrpDfFb2d75IJeY4VCbTS69y3IKLvRTNfBLlLSoRUqIkqvqMvLdMuc00htMIAt7O"
+);
 const Payment = () => {
   const { id } = useParams();
   const [appointment, setAppointment] = useState({});
@@ -46,8 +51,10 @@ const Payment = () => {
         </div>
         {/* payment  */}
         <div class="card bg-base-100 md:my-6 my-4 w-full lg:w-50 shadow-xl">
-          <div class="card-body items-center text-center">
-            <h2 className="text-4lx">Payment</h2>
+          <div class="card-body ">
+            <Elements stripe={stripePromise}>
+              <CheckoutForm />
+            </Elements>
           </div>
         </div>
       </div>
