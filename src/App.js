@@ -22,6 +22,7 @@ import Users from "./components/pages/Appointment/Dashboard/Users";
 import RequireAdmin from "./components/pages/Login/RequireAdmin";
 import AddDoctor from "./components/pages/Appointment/Dashboard/AddDoctor";
 import ManageDoctors from "./components/pages/Appointment/Dashboard/ManageDoctors";
+import Payment from "./components/pages/Appointment/Dashboard/Payment";
 
 function App() {
   let [online, isOnline] = useState(navigator.onLine);
@@ -58,6 +59,14 @@ function App() {
           element={
             <RequireAuth>
               <Appointment />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/payment/:id"
+          element={
+            <RequireAuth>
+              <Payment />
             </RequireAuth>
           }
         />

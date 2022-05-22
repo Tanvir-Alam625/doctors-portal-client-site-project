@@ -39,6 +39,7 @@ const MyAppointment = () => {
         setBooked(data);
       });
   }, [user, navigate]);
+  console.log(booked);
   return (
     <div className="pt-[40px]">
       <h2 className="text-2xl font-bold ">My Appointment</h2>
@@ -52,6 +53,7 @@ const MyAppointment = () => {
               <th>Date</th>
               <th>Service</th>
               <th>Time</th>
+              <th>Payment</th>
             </tr>
           </thead>
           <tbody>
@@ -63,6 +65,18 @@ const MyAppointment = () => {
                 <td>{book.date}</td>
                 <td className="capitalize">{book.treatment}</td>
                 <td className="uppercase">{book.slot}</td>
+                <td className="uppercase">
+                  {book.price && !book.paid ? (
+                    <button
+                      className="btn btn-xs "
+                      onClick={() => navigate(`/payment/${book._id}`)}
+                    >
+                      Pay
+                    </button>
+                  ) : (
+                    <p>Paid</p>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
