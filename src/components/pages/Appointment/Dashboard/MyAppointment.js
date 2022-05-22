@@ -7,6 +7,7 @@ import { signOut } from "firebase/auth";
 
 const MyAppointment = () => {
   const [booked, setBooked] = useState([]);
+  const [spinner, setSpinner] = useState(true);
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -37,50 +38,55 @@ const MyAppointment = () => {
       })
       .then((data) => {
         setBooked(data);
+        setSpinner(false);
       });
   }, [user, navigate]);
-  console.log(booked);
   return (
     <div className="pt-[40px]">
       <h2 className="text-2xl font-bold ">My Appointment</h2>
       <div className="overflow-x-auto">
-        <table className="table w-full mt-[20px]">
-          {/* <!-- head --> */}
-          <thead>
-            <tr className="uppercase font-bold text-accent">
-              <th>No:</th>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Service</th>
-              <th>Time</th>
-              <th>Payment</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* <!-- row 1 --> */}
-            {booked.map((book, index) => (
-              <tr className="text-xs md:text-sm " key={index}>
-                <th>{index + 1}</th>
-                <td className="capitalize">{book.patientName}</td>
-                <td>{book.date}</td>
-                <td className="capitalize">{book.treatment}</td>
-                <td className="uppercase">{book.slot}</td>
-                <td className="uppercase">
-                  {book.price && !book.paid ? (
-                    <button
-                      className="btn btn-xs "
-                      onClick={() => navigate(`/payment/${book._id}`)}
-                    >
-                      Pay
-                    </button>
-                  ) : (
-                    <p>Paid</p>
-                  )}
-                </td>
+        {spinner ? (
+          <p className="text-center text-xl my-4">Loading...</p>
+        ) : (
+          <table className="table w-full mt-[20px]">
+            {/* <!-- head --> */}
+            <thead>
+              <tr className="uppercase font-bold text-accent">
+                <th>No:</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Service</th>
+                <th>Time</th>
+                <th>Payment</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {/* <!-- row 1 --> */}
+              {booked.map((book, index) => (
+                <tr className="text-xs md:text-sm " key={index}>
+                  <th>{index + 1}</th>
+                  <td className="capitalize">{book.patientName}</td>
+                  <td>{book.date}</td>
+                  <td className="capitalize">{book.treatment}</td>
+                  <td className="uppercase">{book.slot}</td>
+                  <td className="uppercase">
+                    {book.price && !book.paid && (
+                      <button
+                        className="btn btn-xs text-base-100 "
+                        onClick={() => navigate(`/payment/${book._id}`)}
+                      >
+                        Pay
+                      </button>
+                    )}
+                    {book.price && book.paid && (
+                      <p className="text-primary">Paid</p>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );
