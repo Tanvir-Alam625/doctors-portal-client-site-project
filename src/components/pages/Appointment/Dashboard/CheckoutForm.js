@@ -12,7 +12,7 @@ const CheckoutForm = ({ appointment }) => {
   const { _id, treatment, patientEmail, patientName, date, slot, price } =
     appointment;
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://shielded-sierra-98684.herokuapp.com/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -67,7 +67,7 @@ const CheckoutForm = ({ appointment }) => {
         price: price,
         treatment: treatment,
       };
-      fetch(`http://localhost:5000/booking/${_id}`, {
+      fetch(`https://shielded-sierra-98684.herokuapp.com/booking/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

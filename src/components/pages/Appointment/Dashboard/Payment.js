@@ -11,7 +11,7 @@ const Payment = () => {
   const { id } = useParams();
   const [appointment, setAppointment] = useState({});
   const [spinner, setSpinner] = useState(true);
-  const url = `http://localhost:5000/payment/${id}`;
+  const url = `https://shielded-sierra-98684.herokuapp.com/payment/${id}`;
   useEffect(() => {
     fetch(url, {
       headers: {
