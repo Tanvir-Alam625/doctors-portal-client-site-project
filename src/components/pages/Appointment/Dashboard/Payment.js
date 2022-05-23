@@ -1,6 +1,6 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Spinner from "../../../Spinner/Spinner";
 import CheckoutForm from "./CheckoutForm";
@@ -12,16 +12,19 @@ const Payment = () => {
   const [appointment, setAppointment] = useState({});
   const [spinner, setSpinner] = useState(true);
   const url = `http://localhost:5000/payment/${id}`;
-  fetch(url, {
-    headers: {
-      authorization: `bearer ${localStorage.getItem("access-token")}`,
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      setAppointment(data);
-      setSpinner(false);
-    });
+  useEffect(() => {
+    fetch(url, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem("access-token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setAppointment(data);
+        setSpinner(false);
+      });
+  }, [id, url]);
+
   if (spinner) {
     return <Spinner />;
   }
@@ -53,7 +56,7 @@ const Payment = () => {
         <div class="card bg-base-100 md:my-6 my-4 w-full lg:w-50 shadow-xl">
           <div class="card-body ">
             <Elements stripe={stripePromise}>
-              <CheckoutForm />
+              <CheckoutForm appointment={appointment} />
             </Elements>
           </div>
         </div>
