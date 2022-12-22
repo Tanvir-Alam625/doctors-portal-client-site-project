@@ -19,7 +19,7 @@ const AvailableAppointments = ({ date }) => {
     refetch,
   } = useQuery(["available", formatedDate], () =>
     fetch(
-      `https://shielded-sierra-98684.herokuapp.com/available?date=${formatedDate}`
+      `https://doctors-portal-server-project-tanvir.onrender.com/available?date=${formatedDate}`
     ).then((res) => res.json())
   );
 

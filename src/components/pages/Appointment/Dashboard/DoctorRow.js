@@ -6,7 +6,7 @@ const DoctorRow = ({ data, index, refetch }) => {
   const handleDelete = (id) => {
     const confirmation = window.confirm(`Are You Sure ${name} was delete `);
     if (confirmation) {
-      const url = `https://shielded-sierra-98684.herokuapp.com/doctor/${id}`;
+      const url = `https://doctors-portal-server-project-tanvir.onrender.com/doctor/${id}`;
       fetch(url, {
         method: "DELETE",
         headers: {

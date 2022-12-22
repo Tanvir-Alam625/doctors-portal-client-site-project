@@ -11,7 +11,7 @@ const Payment = () => {
   const { id } = useParams();
   const [appointment, setAppointment] = useState({});
   const [spinner, setSpinner] = useState(true);
-  const url = `https://shielded-sierra-98684.herokuapp.com/payment/${id}`;
+  const url = `https://doctors-portal-server-project-tanvir.onrender.com/payment/${id}`;
   useEffect(() => {
     fetch(url, {
       headers: {

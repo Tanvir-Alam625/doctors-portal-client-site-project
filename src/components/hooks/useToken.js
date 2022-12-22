@@ -6,7 +6,7 @@ const useToken = (user) => {
     const email = user?.user?.email;
     const currentUser = { email: email };
     if (email) {
-      fetch(`https://shielded-sierra-98684.herokuapp.com/user/${email}`, {
+      fetch(`https://doctors-portal-server-project-tanvir.onrender.com/user/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

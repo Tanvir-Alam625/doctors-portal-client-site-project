@@ -9,7 +9,7 @@ const ManageDoctors = () => {
     isLoading,
     refetch,
   } = useQuery("doctors", () =>
-    fetch("https://shielded-sierra-98684.herokuapp.com/doctors", {
+    fetch("https://doctors-portal-server-project-tanvir.onrender.com/doctors", {
       authorization: `bearer ${localStorage.getItem("access-token")}`,
     })
       .then((res) => res.json())

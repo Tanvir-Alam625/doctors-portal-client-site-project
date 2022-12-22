@@ -9,7 +9,7 @@ const Users = () => {
     error,
     refetch,
   } = useQuery("users", () =>
-    fetch(`https://shielded-sierra-98684.herokuapp.com/users`, {
+    fetch(`https://doctors-portal-server-project-tanvir.onrender.com/users`, {
       method: "GET",
       headers: {
         authorization: `bearer ${localStorage.getItem("access-token")}`,

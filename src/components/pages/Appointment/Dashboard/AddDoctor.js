@@ -19,7 +19,7 @@ const AddDoctor = () => {
     error,
     refetch,
   } = useQuery("service", () =>
-    fetch(`https://shielded-sierra-98684.herokuapp.com/service`).then((res) =>
+    fetch(`https://doctors-portal-server-project-tanvir.onrender.com/service`).then((res) =>
       res.json()
     )
   );
@@ -46,7 +46,7 @@ const AddDoctor = () => {
             specialty: data.specialty,
             img: result.data.url,
           };
-          fetch("https://shielded-sierra-98684.herokuapp.com/doctors", {
+          fetch("https://doctors-portal-server-project-tanvir.onrender.com/doctors", {
             method: "POST",
             headers: {
               "content-type": "application/json",

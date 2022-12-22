@@ -26,7 +26,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
       phone: phone,
       slot: slot,
     };
-    fetch("https://shielded-sierra-98684.herokuapp.com/booking", {
+    fetch("https://doctors-portal-server-project-tanvir.onrender.com/booking", {
       method: "POST",
       headers: {
         "content-type": "application/json",

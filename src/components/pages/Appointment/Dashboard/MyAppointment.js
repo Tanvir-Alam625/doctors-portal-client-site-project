@@ -14,7 +14,7 @@ const MyAppointment = () => {
   useEffect(() => {
     const email = user?.email;
     fetch(
-      `https://shielded-sierra-98684.herokuapp.com/booking?email=${email}`,
+      `https://doctors-portal-server-project-tanvir.onrender.com/booking?email=${email}`,
       {
         method: "GET",
         headers: {
